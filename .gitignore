@@ -1,2 +1,10 @@
 *.shp
 .DS_Store
+*.pmtiles
+*.geojson
+census_2011_complete/QS211EW_oa/qs211ew_2011oa/QS211EWDATA.CSV
+census_2011_complete/KS202EW_oa/KS202ew_2011_oa/KS202EWDATA.CSV
+2011_census_master_lsoa.csv
+old/**
+census_2011_complete/**
+*.zip

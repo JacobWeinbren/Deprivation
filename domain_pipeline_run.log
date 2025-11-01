@@ -1,0 +1,2951 @@
+
+============================================================
+Processing Domain: IMD (Index of Multiple Deprivation (IMD) Score)
+============================================================
+\n[Step 1/2] Running Feature Selection for IMD...
+Loading data for: Index of Multiple Deprivation (IMD) Score
+Found 33670 LSOAs with exact boundary match
+Including correlated domains: ['Income Score (rate)', 'Employment Score (rate)', 'Income Deprivation Affecting Children Index (IDACI) Score (rate)']
+Final training data: 31830 LSOAs with 2514 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Total features available: 2512
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for IMD:
+   1. DOMAIN_2019                    Score=1.0000
+   2. Parent_Domain_2019             Score=0.2714
+   3. KS601EW0024                    Score=0.2797
+   4. QS119EW0005                    Score=0.2775
+   5. KS601EW0019                    Score=0.2752
+   6. QS611EW0005                    Score=0.2738
+   7. KS611EW0026                    Score=0.2686
+   8. KS106EW0008                    Score=0.2582
+   9. KS612EW0017                    Score=0.2486
+  10. KS611EW0020                    Score=0.2462
+
+Validating feature selection...
+Training R² with 100 features: 0.9920
+✓ Saved 100 features to selected_features_IMD.txt
+\n[Step 2/2] Running Transfer Modelling for IMD...
+
+============================================================
+PROCESSING: IMD
+============================================================
+Loaded 100 features
+Preparing data for: Index of Multiple Deprivation (IMD) Score
+Including related domains: ['Income Score (rate)', 'Employment Score (rate)', 'Income Deprivation Affecting Children Index (IDACI) Score (rate)']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.72s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2513
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 51.94s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 49.81s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.9403 (+/- 0.0015)
+XGBoost: R²=0.9512 (+/- 0.0010)
+LightGBM: R²=0.9507 (+/- 0.0012)
+
+Training final models...
+RF OOB Score: 0.9409
+[0]	validation_0-rmse:15.62128
+[100]	validation_0-rmse:6.85517
+[200]	validation_0-rmse:4.33354
+[300]	validation_0-rmse:3.80062
+[400]	validation_0-rmse:3.68677
+[500]	validation_0-rmse:3.65238
+[600]	validation_0-rmse:3.63501
+[700]	validation_0-rmse:3.62304
+[800]	validation_0-rmse:3.61315
+[900]	validation_0-rmse:3.60597
+[1000]	validation_0-rmse:3.59906
+[1100]	validation_0-rmse:3.59154
+[1200]	validation_0-rmse:3.58673
+[1300]	validation_0-rmse:3.58091
+[1400]	validation_0-rmse:3.57543
+[1500]	validation_0-rmse:3.57200
+[1600]	validation_0-rmse:3.56959
+[1700]	validation_0-rmse:3.56582
+[1800]	validation_0-rmse:3.56286
+[1900]	validation_0-rmse:3.56033
+[1999]	validation_0-rmse:3.55773
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 47.5794
+[200]	valid_0's l2: 19.0266
+[300]	valid_0's l2: 14.6057
+[400]	valid_0's l2: 13.6723
+[500]	valid_0's l2: 13.3847
+[600]	valid_0's l2: 13.2385
+[700]	valid_0's l2: 13.1229
+[800]	valid_0's l2: 13.0498
+[900]	valid_0's l2: 12.9829
+[1000]	valid_0's l2: 12.926
+[1100]	valid_0's l2: 12.882
+[1200]	valid_0's l2: 12.8488
+[1300]	valid_0's l2: 12.8193
+[1400]	valid_0's l2: 12.7905
+[1500]	valid_0's l2: 12.7721
+[1600]	valid_0's l2: 12.7485
+[1700]	valid_0's l2: 12.7238
+[1800]	valid_0's l2: 12.7033
+[1900]	valid_0's l2: 12.684
+[2000]	valid_0's l2: 12.6609
+Did not meet early stopping. Best iteration is:
+[2000]	valid_0's l2: 12.6609
+
+Validation set performance:
+Random Forest: R²=0.9392, MAE=2.769
+XGBoost: R²=0.9491, MAE=2.533
+LightGBM: R²=0.9491, MAE=2.532
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. DOMAIN_2019                    0.4160
+   2. QS611EW0005                    0.1386
+   3. KS601EW0019                    0.1244
+   4. KS611EW0020                    0.0528
+   5. QS119EW0005                    0.0393
+   6. KS404EW0008                    0.0116
+   7. KS611EW0026                    0.0097
+   8. QS119EW0002                    0.0079
+   9. Parent_Domain_2019             0.0072
+  10. Health Deprivation and Disabil 0.0070
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.331, XGB=0.334, LGBM=0.334
+
+Total training time: 324.90s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (IMD)
+============================================================
+R² Score: 0.9484
+MAE: 2.549
+RMSE: 3.581
+Validation plot saved to validation_IMD.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_IMD_2011_boundaries.csv
+Shapefile saved to IMD_2025_IMD_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (IMD)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=21.669, Std=15.332
+2025: Mean=21.758, Std=15.315
+Mean change: 0.088
+Median % change: -0.0%
+Validation and saving took 2.40s
+
+============================================================
+COMPLETED: IMD
+Final R² Score: 0.9484
+Total time: 331.07s
+============================================================
+
+\nFinished processing IMD.
+
+============================================================
+Processing Domain: Income (Income Score (rate))
+============================================================
+\n[Step 1/2] Running Feature Selection for Income...
+Loading data for: Income Score (rate)
+Found 33670 LSOAs with exact boundary match
+Including correlated domains: ['Index of Multiple Deprivation (IMD) Score', 'Employment Score (rate)', 'Income Deprivation Affecting Children Index (IDACI) Score (rate)']
+Final training data: 31830 LSOAs with 2514 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Total features available: 2512
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for Income:
+   1. DOMAIN_2019                    Score=1.0000
+   2. IMD_2019                       Score=0.4554
+   3. Parent_Domain_2019             Score=0.2815
+   4. KS106EW0008                    Score=0.3640
+   5. KS611EW0026                    Score=0.3637
+   6. KS601EW0019                    Score=0.3524
+   7. IDAOPI_2019                    Score=0.3403
+   8. QS611EW0005                    Score=0.3181
+   9. QS608EW0050                    Score=0.3161
+  10. QS119EW0005                    Score=0.3100
+
+Validating feature selection...
+Training R² with 100 features: 0.9915
+✓ Saved 100 features to selected_features_Income.txt
+\n[Step 2/2] Running Transfer Modelling for Income...
+
+============================================================
+PROCESSING: Income
+============================================================
+Loaded 100 features
+Preparing data for: Income Score (rate)
+Including related domains: ['Index of Multiple Deprivation (IMD) Score', 'Employment Score (rate)', 'Income Deprivation Affecting Children Index (IDACI) Score (rate)']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.68s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2513
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 52.77s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 50.42s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.9377 (+/- 0.0036)
+XGBoost: R²=0.9461 (+/- 0.0027)
+LightGBM: R²=0.9459 (+/- 0.0025)
+
+Training final models...
+RF OOB Score: 0.9384
+[0]	validation_0-rmse:0.15594
+[100]	validation_0-rmse:0.06887
+[200]	validation_0-rmse:0.04368
+[300]	validation_0-rmse:0.03824
+[400]	validation_0-rmse:0.03710
+[500]	validation_0-rmse:0.03674
+[600]	validation_0-rmse:0.03656
+[700]	validation_0-rmse:0.03644
+[800]	validation_0-rmse:0.03635
+[900]	validation_0-rmse:0.03627
+[1000]	validation_0-rmse:0.03619
+[1100]	validation_0-rmse:0.03613
+[1200]	validation_0-rmse:0.03609
+[1300]	validation_0-rmse:0.03604
+[1400]	validation_0-rmse:0.03600
+[1500]	validation_0-rmse:0.03596
+[1600]	validation_0-rmse:0.03593
+[1700]	validation_0-rmse:0.03591
+[1800]	validation_0-rmse:0.03588
+[1900]	validation_0-rmse:0.03585
+[1999]	validation_0-rmse:0.03583
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 0.00481271
+[200]	valid_0's l2: 0.00193126
+[300]	valid_0's l2: 0.00147314
+[400]	valid_0's l2: 0.00138106
+[500]	valid_0's l2: 0.00135558
+[600]	valid_0's l2: 0.00134379
+[700]	valid_0's l2: 0.0013352
+[800]	valid_0's l2: 0.00132969
+[900]	valid_0's l2: 0.00132354
+[1000]	valid_0's l2: 0.00131945
+[1100]	valid_0's l2: 0.00131612
+[1200]	valid_0's l2: 0.001313
+[1300]	valid_0's l2: 0.00131065
+[1400]	valid_0's l2: 0.00130771
+[1500]	valid_0's l2: 0.00130592
+[1600]	valid_0's l2: 0.00130391
+[1700]	valid_0's l2: 0.00130217
+[1800]	valid_0's l2: 0.00130073
+[1900]	valid_0's l2: 0.00129953
+[2000]	valid_0's l2: 0.00129794
+Did not meet early stopping. Best iteration is:
+[1999]	valid_0's l2: 0.00129793
+
+Validation set performance:
+Random Forest: R²=0.9409, MAE=0.027
+XGBoost: R²=0.9482, MAE=0.025
+LightGBM: R²=0.9476, MAE=0.025
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. DOMAIN_2019                    0.5386
+   2. IMD_2019                       0.2145
+   3. KS601EW0019                    0.0397
+   4. KS611EW0026                    0.0265
+   5. KS106EW0008                    0.0238
+   6. QS409EW0004                    0.0088
+   7. KS601EW0023                    0.0085
+   8. QS414EW0005                    0.0077
+   9. IDAOPI_2019                    0.0066
+  10. QS611EW0005                    0.0063
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.332, XGB=0.334, LGBM=0.334
+
+Total training time: 326.54s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (Income)
+============================================================
+R² Score: 0.9473
+MAE: 0.025
+RMSE: 0.036
+Validation plot saved to validation_Income.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_Income_2011_boundaries.csv
+Shapefile saved to IMD_2025_Income_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (Income)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=0.128, Std=0.094
+2025: Mean=0.229, Std=0.152
+Mean change: 0.101
+Median % change: 81.4%
+Validation and saving took 2.90s
+
+============================================================
+COMPLETED: Income
+Final R² Score: 0.9473
+Total time: 333.17s
+============================================================
+
+\nFinished processing Income.
+
+============================================================
+Processing Domain: Employment (Employment Score (rate))
+============================================================
+\n[Step 1/2] Running Feature Selection for Employment...
+Loading data for: Employment Score (rate)
+Found 33670 LSOAs with exact boundary match
+Including correlated domains: ['Income Score (rate)', 'Index of Multiple Deprivation (IMD) Score', 'Income Deprivation Affecting Children Index (IDACI) Score (rate)']
+Final training data: 31830 LSOAs with 2514 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Total features available: 2512
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for Employment:
+   1. DOMAIN_2019                    Score=1.0000
+   2. IMD_2019                       Score=0.4881
+   3. Parent_Domain_2019             Score=0.2829
+   4. KS601EW0024                    Score=0.3419
+   5. QS611EW0005                    Score=0.2797
+   6. KS601EW0019                    Score=0.2789
+   7. QS119EW0005                    Score=0.2788
+   8. KS612EW0026                    Score=0.2700
+   9. Health Deprivation and Disability Score Score=0.2690
+  10. KS612EW0017                    Score=0.2589
+
+Validating feature selection...
+Training R² with 100 features: 0.9906
+✓ Saved 100 features to selected_features_Employment.txt
+\n[Step 2/2] Running Transfer Modelling for Employment...
+
+============================================================
+PROCESSING: Employment
+============================================================
+Loaded 100 features
+Preparing data for: Employment Score (rate)
+Including related domains: ['Income Score (rate)', 'Index of Multiple Deprivation (IMD) Score', 'Income Deprivation Affecting Children Index (IDACI) Score (rate)']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.70s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2513
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 51.89s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 49.71s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.9365 (+/- 0.0019)
+XGBoost: R²=0.9444 (+/- 0.0016)
+LightGBM: R²=0.9443 (+/- 0.0016)
+
+Training final models...
+RF OOB Score: 0.9366
+[0]	validation_0-rmse:0.08435
+[100]	validation_0-rmse:0.03877
+[200]	validation_0-rmse:0.02642
+[300]	validation_0-rmse:0.02395
+[400]	validation_0-rmse:0.02345
+[500]	validation_0-rmse:0.02330
+[600]	validation_0-rmse:0.02323
+[700]	validation_0-rmse:0.02320
+[800]	validation_0-rmse:0.02317
+[900]	validation_0-rmse:0.02315
+[1000]	validation_0-rmse:0.02314
+[1100]	validation_0-rmse:0.02313
+[1200]	validation_0-rmse:0.02312
+[1300]	validation_0-rmse:0.02311
+[1400]	validation_0-rmse:0.02310
+[1500]	validation_0-rmse:0.02309
+[1600]	validation_0-rmse:0.02308
+[1700]	validation_0-rmse:0.02308
+[1800]	validation_0-rmse:0.02308
+[1900]	validation_0-rmse:0.02308
+[1999]	validation_0-rmse:0.02307
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 0.00152217
+[200]	valid_0's l2: 0.000700867
+[300]	valid_0's l2: 0.000574493
+[400]	valid_0's l2: 0.0005495
+[500]	valid_0's l2: 0.000542497
+[600]	valid_0's l2: 0.000538936
+[700]	valid_0's l2: 0.000536767
+[800]	valid_0's l2: 0.000535755
+[900]	valid_0's l2: 0.000534883
+[1000]	valid_0's l2: 0.000534019
+[1100]	valid_0's l2: 0.000533303
+[1200]	valid_0's l2: 0.000532978
+[1300]	valid_0's l2: 0.000532649
+[1400]	valid_0's l2: 0.000532535
+[1500]	valid_0's l2: 0.0005323
+[1600]	valid_0's l2: 0.000532309
+Early stopping, best iteration is:
+[1530]	valid_0's l2: 0.000532174
+
+Validation set performance:
+Random Forest: R²=0.9199, MAE=0.015
+XGBoost: R²=0.9265, MAE=0.014
+LightGBM: R²=0.9265, MAE=0.014
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. DOMAIN_2019                    0.5697
+   2. IMD_2019                       0.2481
+   3. KS601EW0024                    0.0378
+   4. QS611EW0005                    0.0093
+   5. KS601EW0019                    0.0083
+   6. KS106EW0008                    0.0065
+   7. QS119EW0005                    0.0034
+   8. QS111EW0005                    0.0033
+   9. Parent_Domain_2019             0.0033
+  10. KS404EW0008                    0.0030
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.332, XGB=0.334, LGBM=0.334
+
+Total training time: 322.76s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (Employment)
+============================================================
+R² Score: 0.9264
+MAE: 0.014
+RMSE: 0.023
+Validation plot saved to validation_Employment.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_Employment_2011_boundaries.csv
+Shapefile saved to IMD_2025_Employment_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (Employment)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=0.100, Std=0.067
+2025: Mean=0.135, Std=0.082
+Mean change: 0.035
+Median % change: 38.6%
+Validation and saving took 2.87s
+
+============================================================
+COMPLETED: Employment
+Final R² Score: 0.9264
+Total time: 329.39s
+============================================================
+
+\nFinished processing Employment.
+
+============================================================
+Processing Domain: Education (Education, Skills and Training Score)
+============================================================
+\n[Step 1/2] Running Feature Selection for Education...
+Loading data for: Education, Skills and Training Score
+Found 33670 LSOAs with exact boundary match
+Including correlated domains: ['Adult Skills Sub-domain Score', 'Children and Young People Sub-domain Score', 'Index of Multiple Deprivation (IMD) Score']
+Final training data: 31830 LSOAs with 2514 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Total features available: 2512
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for Education:
+   1. DOMAIN_2019                    Score=1.0000
+   2. IMD_2019                       Score=0.3497
+   3. KS611EW0020                    Score=0.3619
+   4. KS611EW0017                    Score=0.3610
+   5. Children and Young People Sub-domain Score Score=0.3356
+   6. QS502EW0012                    Score=0.3196
+   7. KS608EW0019                    Score=0.3033
+   8. KS608EW0003                    Score=0.2937
+   9. KS611EW0025                    Score=0.2897
+  10. QS611EW0005                    Score=0.2824
+
+Validating feature selection...
+Training R² with 100 features: 0.9868
+✓ Saved 100 features to selected_features_Education.txt
+\n[Step 2/2] Running Transfer Modelling for Education...
+
+============================================================
+PROCESSING: Education
+============================================================
+Loaded 100 features
+Preparing data for: Education, Skills and Training Score
+Including related domains: ['Adult Skills Sub-domain Score', 'Children and Young People Sub-domain Score', 'Index of Multiple Deprivation (IMD) Score']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.72s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2513
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 52.42s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 49.78s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.9112 (+/- 0.0025)
+XGBoost: R²=0.9190 (+/- 0.0020)
+LightGBM: R²=0.9187 (+/- 0.0021)
+
+Training final models...
+RF OOB Score: 0.9118
+[0]	validation_0-rmse:18.17667
+[100]	validation_0-rmse:8.56965
+[200]	validation_0-rmse:6.00655
+[300]	validation_0-rmse:5.47492
+[400]	validation_0-rmse:5.35241
+[500]	validation_0-rmse:5.31670
+[600]	validation_0-rmse:5.29913
+[700]	validation_0-rmse:5.28790
+[800]	validation_0-rmse:5.27983
+[900]	validation_0-rmse:5.27140
+[1000]	validation_0-rmse:5.26676
+[1100]	validation_0-rmse:5.26330
+[1200]	validation_0-rmse:5.25872
+[1300]	validation_0-rmse:5.25255
+[1400]	validation_0-rmse:5.24979
+[1500]	validation_0-rmse:5.24543
+[1600]	validation_0-rmse:5.24404
+[1700]	validation_0-rmse:5.24210
+[1800]	validation_0-rmse:5.24221
+[1900]	validation_0-rmse:5.23994
+[1999]	validation_0-rmse:5.23776
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 74.5158
+[200]	valid_0's l2: 36.4067
+[300]	valid_0's l2: 30.2396
+[400]	valid_0's l2: 28.9851
+[500]	valid_0's l2: 28.5835
+[600]	valid_0's l2: 28.3725
+[700]	valid_0's l2: 28.2302
+[800]	valid_0's l2: 28.1214
+[900]	valid_0's l2: 28.0381
+[1000]	valid_0's l2: 27.9698
+[1100]	valid_0's l2: 27.9303
+[1200]	valid_0's l2: 27.8965
+[1300]	valid_0's l2: 27.8618
+[1400]	valid_0's l2: 27.8301
+[1500]	valid_0's l2: 27.7989
+[1600]	valid_0's l2: 27.7937
+[1700]	valid_0's l2: 27.7777
+[1800]	valid_0's l2: 27.7738
+[1900]	valid_0's l2: 27.7524
+[2000]	valid_0's l2: 27.7347
+Did not meet early stopping. Best iteration is:
+[1997]	valid_0's l2: 27.7337
+
+Validation set performance:
+Random Forest: R²=0.9111, MAE=3.872
+XGBoost: R²=0.9184, MAE=3.706
+LightGBM: R²=0.9175, MAE=3.726
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. DOMAIN_2019                    0.4232
+   2. KS611EW0017                    0.1403
+   3. KS611EW0020                    0.0985
+   4. IMD_2019                       0.0304
+   5. Children and Young People Sub- 0.0209
+   6. KS608EW0019                    0.0115
+   7. KS608EW0003                    0.0092
+   8. KS611EW0026                    0.0073
+   9. QS611EW0005                    0.0066
+  10. KS205EW0015                    0.0061
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.332, XGB=0.334, LGBM=0.334
+
+Total training time: 319.98s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (Education)
+============================================================
+R² Score: 0.9178
+MAE: 3.721
+RMSE: 5.257
+Validation plot saved to validation_Education.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_Education_2011_boundaries.csv
+Shapefile saved to IMD_2025_Education_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (Education)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=21.691, Std=18.608
+2025: Mean=21.838, Std=17.466
+Mean change: 0.146
+Median % change: 3.0%
+Validation and saving took 2.73s
+
+============================================================
+COMPLETED: Education
+Final R² Score: 0.9178
+Total time: 326.48s
+============================================================
+
+\nFinished processing Education.
+
+============================================================
+Processing Domain: Health (Health Deprivation and Disability Score)
+============================================================
+\n[Step 1/2] Running Feature Selection for Health...
+Loading data for: Health Deprivation and Disability Score
+Found 33670 LSOAs with exact boundary match
+Including correlated domains: ['Employment Score (rate)', 'Index of Multiple Deprivation (IMD) Score', 'Income Score (rate)']
+Final training data: 31830 LSOAs with 2514 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Total features available: 2512
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for Health:
+   1. DOMAIN_2019                    Score=1.0000
+   2. IMD_2019                       Score=0.3976
+   3. Parent_Domain_2019             Score=0.2763
+   4. KS601EW0024                    Score=0.4069
+   5. QS611EW0005                    Score=0.3111
+   6. QS609EW0002                    Score=0.3044
+   7. QS602EW0015                    Score=0.3004
+   8. KS301EW0026                    Score=0.2875
+   9. KS609EW0002                    Score=0.2700
+  10. KS301EW0021                    Score=0.2682
+
+Validating feature selection...
+Training R² with 100 features: 0.9866
+✓ Saved 100 features to selected_features_Health.txt
+\n[Step 2/2] Running Transfer Modelling for Health...
+
+============================================================
+PROCESSING: Health
+============================================================
+Loaded 100 features
+Preparing data for: Health Deprivation and Disability Score
+Including related domains: ['Employment Score (rate)', 'Index of Multiple Deprivation (IMD) Score', 'Income Score (rate)']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.79s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2513
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 52.26s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 49.81s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.9074 (+/- 0.0024)
+XGBoost: R²=0.9164 (+/- 0.0026)
+LightGBM: R²=0.9155 (+/- 0.0026)
+
+Training final models...
+RF OOB Score: 0.9081
+[0]	validation_0-rmse:0.87880
+[100]	validation_0-rmse:0.41820
+[200]	validation_0-rmse:0.29510
+[300]	validation_0-rmse:0.27007
+[400]	validation_0-rmse:0.26439
+[500]	validation_0-rmse:0.26263
+[600]	validation_0-rmse:0.26176
+[700]	validation_0-rmse:0.26124
+[800]	validation_0-rmse:0.26085
+[900]	validation_0-rmse:0.26052
+[1000]	validation_0-rmse:0.26021
+[1100]	validation_0-rmse:0.25999
+[1200]	validation_0-rmse:0.25975
+[1300]	validation_0-rmse:0.25953
+[1400]	validation_0-rmse:0.25949
+[1500]	validation_0-rmse:0.25937
+[1600]	validation_0-rmse:0.25934
+[1700]	validation_0-rmse:0.25921
+[1800]	validation_0-rmse:0.25908
+[1900]	validation_0-rmse:0.25902
+[1999]	validation_0-rmse:0.25890
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 0.177968
+[200]	valid_0's l2: 0.0880893
+[300]	valid_0's l2: 0.0732998
+[400]	valid_0's l2: 0.0701589
+[500]	valid_0's l2: 0.0691182
+[600]	valid_0's l2: 0.0686745
+[700]	valid_0's l2: 0.0684848
+[800]	valid_0's l2: 0.0682864
+[900]	valid_0's l2: 0.0681104
+[1000]	valid_0's l2: 0.0679259
+[1100]	valid_0's l2: 0.067825
+[1200]	valid_0's l2: 0.0677079
+[1300]	valid_0's l2: 0.0676618
+[1400]	valid_0's l2: 0.0676032
+[1500]	valid_0's l2: 0.0675263
+[1600]	valid_0's l2: 0.0675047
+[1700]	valid_0's l2: 0.067459
+[1800]	valid_0's l2: 0.0674035
+[1900]	valid_0's l2: 0.0673611
+[2000]	valid_0's l2: 0.0673334
+Did not meet early stopping. Best iteration is:
+[1988]	valid_0's l2: 0.0673319
+
+Validation set performance:
+Random Forest: R²=0.9063, MAE=0.210
+XGBoost: R²=0.9147, MAE=0.201
+LightGBM: R²=0.9143, MAE=0.202
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. DOMAIN_2019                    0.4547
+   2. IMD_2019                       0.1440
+   3. KS601EW0024                    0.0816
+   4. DOMAIN_2019_lag                0.0287
+   5. QS611EW0005                    0.0196
+   6. KS404EW0008                    0.0085
+   7. KS601EW0018                    0.0084
+   8. QS606EW0006                    0.0083
+   9. KS205EW0014                    0.0074
+  10. QS609EW0002                    0.0067
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.331, XGB=0.334, LGBM=0.334
+
+Total training time: 327.96s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (Health)
+============================================================
+R² Score: 0.9146
+MAE: 0.201
+RMSE: 0.259
+Validation plot saved to validation_Health.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_Health_2011_boundaries.csv
+Shapefile saved to IMD_2025_Health_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (Health)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=-0.000, Std=0.860
+2025: Mean=0.003, Std=0.849
+Mean change: 0.003
+Median % change: -2.5%
+Validation and saving took 2.74s
+
+============================================================
+COMPLETED: Health
+Final R² Score: 0.9146
+Total time: 334.54s
+============================================================
+
+\nFinished processing Health.
+
+============================================================
+Processing Domain: Crime (Crime Score)
+============================================================
+\n[Step 1/2] Running Feature Selection for Crime...
+Loading data for: Crime Score
+Found 33670 LSOAs with exact boundary match
+Including correlated domains: ['Index of Multiple Deprivation (IMD) Score', 'Income Score (rate)', 'Income Deprivation Affecting Children Index (IDACI) Score (rate)']
+Final training data: 31830 LSOAs with 2514 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Total features available: 2512
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for Crime:
+   1. DOMAIN_2019                    Score=1.0000
+   2. IMD_2019                       Score=0.6011
+   3. QS119EW0005                    Score=0.4246
+   4. KS601EW0019                    Score=0.4175
+   5. QS602EW0009                    Score=0.4140
+   6. KS404EW0008                    Score=0.4077
+   7. QS611EW0005                    Score=0.4061
+   8. KS104EW0009                    Score=0.3819
+   9. QS610EW0050                    Score=0.3802
+  10. KS612EW0026                    Score=0.3795
+
+Validating feature selection...
+Training R² with 100 features: 0.9778
+✓ Saved 100 features to selected_features_Crime.txt
+\n[Step 2/2] Running Transfer Modelling for Crime...
+
+============================================================
+PROCESSING: Crime
+============================================================
+Loaded 100 features
+Preparing data for: Crime Score
+Including related domains: ['Index of Multiple Deprivation (IMD) Score', 'Income Score (rate)', 'Income Deprivation Affecting Children Index (IDACI) Score (rate)']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.78s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2513
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 51.89s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 49.80s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.8314 (+/- 0.0027)
+XGBoost: R²=0.8548 (+/- 0.0024)
+LightGBM: R²=0.8536 (+/- 0.0028)
+
+Training final models...
+RF OOB Score: 0.8324
+[0]	validation_0-rmse:0.84088
+[100]	validation_0-rmse:0.45170
+[200]	validation_0-rmse:0.35217
+[300]	validation_0-rmse:0.33035
+[400]	validation_0-rmse:0.32435
+[500]	validation_0-rmse:0.32222
+[600]	validation_0-rmse:0.32104
+[700]	validation_0-rmse:0.32038
+[800]	validation_0-rmse:0.31977
+[900]	validation_0-rmse:0.31925
+[1000]	validation_0-rmse:0.31890
+[1100]	validation_0-rmse:0.31866
+[1200]	validation_0-rmse:0.31843
+[1300]	validation_0-rmse:0.31828
+[1400]	validation_0-rmse:0.31803
+[1500]	validation_0-rmse:0.31790
+[1600]	validation_0-rmse:0.31767
+[1700]	validation_0-rmse:0.31746
+[1800]	validation_0-rmse:0.31734
+[1900]	validation_0-rmse:0.31717
+[1999]	validation_0-rmse:0.31702
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 0.207528
+[200]	valid_0's l2: 0.125822
+[300]	valid_0's l2: 0.110253
+[400]	valid_0's l2: 0.105925
+[500]	valid_0's l2: 0.104226
+[600]	valid_0's l2: 0.103317
+[700]	valid_0's l2: 0.102849
+[800]	valid_0's l2: 0.102589
+[900]	valid_0's l2: 0.102387
+[1000]	valid_0's l2: 0.102247
+[1100]	valid_0's l2: 0.102056
+[1200]	valid_0's l2: 0.101978
+[1300]	valid_0's l2: 0.101885
+[1400]	valid_0's l2: 0.101733
+[1500]	valid_0's l2: 0.101698
+[1600]	valid_0's l2: 0.101628
+[1700]	valid_0's l2: 0.101519
+[1800]	valid_0's l2: 0.101426
+[1900]	valid_0's l2: 0.101392
+[2000]	valid_0's l2: 0.101326
+Did not meet early stopping. Best iteration is:
+[2000]	valid_0's l2: 0.101326
+
+Validation set performance:
+Random Forest: R²=0.8358, MAE=0.269
+XGBoost: R²=0.8602, MAE=0.249
+LightGBM: R²=0.8590, MAE=0.250
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. DOMAIN_2019                    0.2598
+   2. IMD_2019                       0.1920
+   3. KS104EW0009                    0.1096
+   4. QS611EW0005                    0.0436
+   5. KS404EW0008                    0.0287
+   6. QS602EW0009                    0.0140
+   7. QS405EW0006                    0.0112
+   8. QS111EW0003                    0.0101
+   9. QS119EW0005                    0.0101
+  10. DOMAIN_2019_lag                0.0096
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.327, XGB=0.337, LGBM=0.336
+
+Total training time: 323.37s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (Crime)
+============================================================
+R² Score: 0.8574
+MAE: 0.252
+RMSE: 0.320
+Validation plot saved to validation_Crime.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_Crime_2011_boundaries.csv
+Shapefile saved to IMD_2025_Crime_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (Crime)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=-0.000, Std=0.815
+2025: Mean=-0.009, Std=0.773
+Mean change: -0.009
+Median % change: -10.0%
+Validation and saving took 3.05s
+
+============================================================
+COMPLETED: Crime
+Final R² Score: 0.8574
+Total time: 330.25s
+============================================================
+
+\nFinished processing Crime.
+
+============================================================
+Processing Domain: Barriers (Barriers to Housing and Services Score)
+============================================================
+\n[Step 1/2] Running Feature Selection for Barriers...
+Loading data for: Barriers to Housing and Services Score
+Found 33670 LSOAs with exact boundary match
+Including correlated domains: ['Wider Barriers Sub-domain Score', 'Geographical Barriers Sub-domain Score', 'Outdoors Sub-domain Score']
+Final training data: 31830 LSOAs with 2515 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2517
+Total features available: 2513
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for Barriers:
+   1. DOMAIN_2019                    Score=1.0000
+   2. IMD_2019                       Score=0.0619
+   3. Parent_Domain_2019             Score=0.1337
+   4. QS415EW0005                    Score=0.6394
+   5. QS415EW0008                    Score=0.4215
+   6. KS605EW0020                    Score=0.4130
+   7. QS102EW0002                    Score=0.3868
+   8. QS415EW0003                    Score=0.3562
+   9. QS607EW0030                    Score=0.3304
+  10. QS607EW0027                    Score=0.3256
+
+Validating feature selection...
+Training R² with 100 features: 0.9467
+✓ Saved 100 features to selected_features_Barriers.txt
+\n[Step 2/2] Running Transfer Modelling for Barriers...
+
+============================================================
+PROCESSING: Barriers
+============================================================
+Loaded 100 features
+Preparing data for: Barriers to Housing and Services Score
+Including related domains: ['Wider Barriers Sub-domain Score', 'Geographical Barriers Sub-domain Score', 'Outdoors Sub-domain Score']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.77s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2517
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2514
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 51.98s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 49.74s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.7042 (+/- 0.0057)
+XGBoost: R²=0.7356 (+/- 0.0042)
+LightGBM: R²=0.7328 (+/- 0.0047)
+
+Training final models...
+RF OOB Score: 0.7075
+[0]	validation_0-rmse:10.33919
+[100]	validation_0-rmse:6.91337
+[200]	validation_0-rmse:6.05688
+[300]	validation_0-rmse:5.78291
+[400]	validation_0-rmse:5.65916
+[500]	validation_0-rmse:5.58767
+[600]	validation_0-rmse:5.54432
+[700]	validation_0-rmse:5.51135
+[800]	validation_0-rmse:5.48538
+[900]	validation_0-rmse:5.46343
+[1000]	validation_0-rmse:5.44379
+[1100]	validation_0-rmse:5.42726
+[1200]	validation_0-rmse:5.41296
+[1300]	validation_0-rmse:5.39979
+[1400]	validation_0-rmse:5.38644
+[1500]	validation_0-rmse:5.37417
+[1600]	validation_0-rmse:5.36408
+[1700]	validation_0-rmse:5.35459
+[1800]	validation_0-rmse:5.34677
+[1900]	validation_0-rmse:5.33934
+[1999]	validation_0-rmse:5.33209
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 47.7147
+[200]	valid_0's l2: 36.4217
+[300]	valid_0's l2: 33.2604
+[400]	valid_0's l2: 31.884
+[500]	valid_0's l2: 31.0403
+[600]	valid_0's l2: 30.4611
+[700]	valid_0's l2: 30.081
+[800]	valid_0's l2: 29.84
+[900]	valid_0's l2: 29.6409
+[1000]	valid_0's l2: 29.4474
+[1100]	valid_0's l2: 29.2946
+[1200]	valid_0's l2: 29.1726
+[1300]	valid_0's l2: 29.0514
+[1400]	valid_0's l2: 28.9286
+[1500]	valid_0's l2: 28.8276
+[1600]	valid_0's l2: 28.7414
+[1700]	valid_0's l2: 28.6552
+[1800]	valid_0's l2: 28.5876
+[1900]	valid_0's l2: 28.5108
+[2000]	valid_0's l2: 28.4328
+Did not meet early stopping. Best iteration is:
+[2000]	valid_0's l2: 28.4328
+
+Validation set performance:
+Random Forest: R²=0.7013, MAE=4.438
+XGBoost: R²=0.7370, MAE=4.156
+LightGBM: R²=0.7370, MAE=4.150
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. QS415EW0005                    0.1208
+   2. DOMAIN_2019                    0.0941
+   3. DOMAIN_2019_lag                0.0704
+   4. QS415EW0005_lag                0.0540
+   5. QS409EW0004                    0.0444
+   6. QS102EW0002                    0.0420
+   7. QS414EW0005                    0.0366
+   8. QS205EW0005                    0.0307
+   9. Wider Barriers Sub-domain Scor 0.0218
+  10. KS605EW0020                    0.0175
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.322, XGB=0.339, LGBM=0.339
+
+Total training time: 364.56s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (Barriers)
+============================================================
+R² Score: 0.7313
+MAE: 4.202
+RMSE: 5.389
+Validation plot saved to validation_Barriers.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_Barriers_2011_boundaries.csv
+Shapefile saved to IMD_2025_Barriers_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (Barriers)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=21.691, Std=10.711
+2025: Mean=21.571, Std=8.713
+Mean change: -0.120
+Median % change: -1.5%
+Validation and saving took 2.84s
+
+============================================================
+COMPLETED: Barriers
+Final R² Score: 0.7313
+Total time: 371.22s
+============================================================
+
+\nFinished processing Barriers.
+
+============================================================
+Processing Domain: LivingEnv (Living Environment Score)
+============================================================
+\n[Step 1/2] Running Feature Selection for LivingEnv...
+Loading data for: Living Environment Score
+Found 33670 LSOAs with exact boundary match
+Including correlated domains: ['Indoors Sub-domain Score', 'Outdoors Sub-domain Score', 'Wider Barriers Sub-domain Score']
+Final training data: 31830 LSOAs with 2514 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Total features available: 2512
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for LivingEnv:
+   1. DOMAIN_2019                    Score=1.0000
+   2. IMD_2019                       Score=0.0879
+   3. Indoors Sub-domain Score       Score=0.4174
+   4. KS402EW0015                    Score=0.3061
+   5. KS403EW0009                    Score=0.2484
+   6. KS401EW0024                    Score=0.2482
+   7. KS105EW0016                    Score=0.1803
+   8. KS603EW0016                    Score=0.1740
+   9. KS401EW0013                    Score=0.1716
+  10. KS401EW0019                    Score=0.1702
+
+Validating feature selection...
+Training R² with 100 features: 0.9710
+✓ Saved 100 features to selected_features_LivingEnv.txt
+\n[Step 2/2] Running Transfer Modelling for LivingEnv...
+
+============================================================
+PROCESSING: LivingEnv
+============================================================
+Loaded 100 features
+Preparing data for: Living Environment Score
+Including related domains: ['Indoors Sub-domain Score', 'Outdoors Sub-domain Score', 'Wider Barriers Sub-domain Score']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.77s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2513
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 51.94s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 50.05s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.7946 (+/- 0.0056)
+XGBoost: R²=0.8411 (+/- 0.0062)
+LightGBM: R²=0.8407 (+/- 0.0062)
+
+Training final models...
+RF OOB Score: 0.7971
+[0]	validation_0-rmse:16.05354
+[100]	validation_0-rmse:9.50196
+[200]	validation_0-rmse:7.78112
+[300]	validation_0-rmse:7.26798
+[400]	validation_0-rmse:7.01868
+[500]	validation_0-rmse:6.86885
+[600]	validation_0-rmse:6.75900
+[700]	validation_0-rmse:6.67661
+[800]	validation_0-rmse:6.61925
+[900]	validation_0-rmse:6.56665
+[1000]	validation_0-rmse:6.52675
+[1100]	validation_0-rmse:6.49377
+[1200]	validation_0-rmse:6.46353
+[1300]	validation_0-rmse:6.44025
+[1400]	validation_0-rmse:6.41789
+[1500]	validation_0-rmse:6.39831
+[1600]	validation_0-rmse:6.38124
+[1700]	validation_0-rmse:6.36491
+[1800]	validation_0-rmse:6.35282
+[1900]	validation_0-rmse:6.33997
+[1999]	validation_0-rmse:6.32823
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 92.1154
+[200]	valid_0's l2: 61.8369
+[300]	valid_0's l2: 53.606
+[400]	valid_0's l2: 49.6338
+[500]	valid_0's l2: 47.2106
+[600]	valid_0's l2: 45.615
+[700]	valid_0's l2: 44.5009
+[800]	valid_0's l2: 43.6458
+[900]	valid_0's l2: 43.0149
+[1000]	valid_0's l2: 42.5329
+[1100]	valid_0's l2: 42.159
+[1200]	valid_0's l2: 41.8664
+[1300]	valid_0's l2: 41.6055
+[1400]	valid_0's l2: 41.3772
+[1500]	valid_0's l2: 41.1801
+[1600]	valid_0's l2: 41.0395
+[1700]	valid_0's l2: 40.9026
+[1800]	valid_0's l2: 40.7595
+[1900]	valid_0's l2: 40.6301
+[2000]	valid_0's l2: 40.5407
+Did not meet early stopping. Best iteration is:
+[1999]	valid_0's l2: 40.5388
+
+Validation set performance:
+Random Forest: R²=0.8014, MAE=5.495
+XGBoost: R²=0.8467, MAE=4.772
+LightGBM: R²=0.8448, MAE=4.807
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. DOMAIN_2019                    0.2538
+   2. Indoors Sub-domain Score       0.0649
+   3. KS402EW0015                    0.0366
+   4. KS202EW0042                    0.0355
+   5. KS401EW0018                    0.0247
+   6. KS401EW0024                    0.0243
+   7. DOMAIN_2019_lag                0.0193
+   8. QS415EW0003                    0.0190
+   9. KS401EW0019                    0.0178
+  10. KS401EW0013                    0.0171
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.321, XGB=0.340, LGBM=0.339
+
+Total training time: 376.86s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (LivingEnv)
+============================================================
+R² Score: 0.8393
+MAE: 4.907
+RMSE: 6.480
+Validation plot saved to validation_LivingEnv.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_LivingEnv_2011_boundaries.csv
+Shapefile saved to IMD_2025_LivingEnv_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (LivingEnv)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=21.691, Std=15.202
+2025: Mean=21.829, Std=14.553
+Mean change: 0.138
+Median % change: 2.4%
+Validation and saving took 2.68s
+
+============================================================
+COMPLETED: LivingEnv
+Final R² Score: 0.8393
+Total time: 383.37s
+============================================================
+
+\nFinished processing LivingEnv.
+
+============================================================
+Processing Domain: IDACI (Income Deprivation Affecting Children Index (IDACI) Score (rate))
+============================================================
+\n[Step 1/2] Running Feature Selection for IDACI...
+Loading data for: Income Deprivation Affecting Children Index (IDACI) Score (rate)
+Found 33670 LSOAs with exact boundary match
+Including correlated domains: ['Income Score (rate)', 'Index of Multiple Deprivation (IMD) Score', 'Employment Score (rate)']
+Final training data: 31830 LSOAs with 2514 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Total features available: 2512
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for IDACI:
+   1. DOMAIN_2019                    Score=0.6010
+   2. IMD_2019                       Score=0.5457
+   3. Parent_Domain_2019             Score=0.3760
+   4. KS106EW0008                    Score=0.4683
+   5. KS611EW0026                    Score=0.4515
+   6. KS601EW0019                    Score=0.4389
+   7. QS611EW0005                    Score=0.4388
+   8. QS608EW0050                    Score=0.4265
+   9. IDAOPI_2019                    Score=0.4141
+  10. QS119EW0005                    Score=0.4011
+
+Validating feature selection...
+Training R² with 100 features: 0.9793
+✓ Saved 100 features to selected_features_IDACI.txt
+\n[Step 2/2] Running Transfer Modelling for IDACI...
+
+============================================================
+PROCESSING: IDACI
+============================================================
+Loaded 100 features
+Preparing data for: Income Deprivation Affecting Children Index (IDACI) Score (rate)
+Including related domains: ['Income Score (rate)', 'Index of Multiple Deprivation (IMD) Score', 'Employment Score (rate)']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.82s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2513
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 52.14s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 50.03s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.8646 (+/- 0.0031)
+XGBoost: R²=0.8736 (+/- 0.0029)
+LightGBM: R²=0.8730 (+/- 0.0029)
+
+Training final models...
+RF OOB Score: 0.8649
+[0]	validation_0-rmse:0.20976
+[100]	validation_0-rmse:0.10710
+[200]	validation_0-rmse:0.08159
+[300]	validation_0-rmse:0.07665
+[400]	validation_0-rmse:0.07555
+[500]	validation_0-rmse:0.07516
+[600]	validation_0-rmse:0.07497
+[700]	validation_0-rmse:0.07484
+[800]	validation_0-rmse:0.07473
+[900]	validation_0-rmse:0.07463
+[1000]	validation_0-rmse:0.07453
+[1100]	validation_0-rmse:0.07449
+[1200]	validation_0-rmse:0.07444
+[1300]	validation_0-rmse:0.07440
+[1400]	validation_0-rmse:0.07435
+[1500]	validation_0-rmse:0.07434
+[1600]	validation_0-rmse:0.07432
+[1700]	validation_0-rmse:0.07432
+[1800]	validation_0-rmse:0.07428
+[1900]	validation_0-rmse:0.07425
+[1999]	validation_0-rmse:0.07422
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 0.0116376
+[200]	valid_0's l2: 0.00671543
+[300]	valid_0's l2: 0.00591018
+[400]	valid_0's l2: 0.00572873
+[500]	valid_0's l2: 0.00567057
+[600]	valid_0's l2: 0.00564454
+[700]	valid_0's l2: 0.00562136
+[800]	valid_0's l2: 0.00561147
+[900]	valid_0's l2: 0.00560197
+[1000]	valid_0's l2: 0.00559149
+[1100]	valid_0's l2: 0.00558365
+[1200]	valid_0's l2: 0.0055751
+[1300]	valid_0's l2: 0.00557494
+[1400]	valid_0's l2: 0.00557143
+[1500]	valid_0's l2: 0.00556504
+[1600]	valid_0's l2: 0.00556254
+[1700]	valid_0's l2: 0.00555853
+[1800]	valid_0's l2: 0.00555526
+[1900]	valid_0's l2: 0.00555054
+[2000]	valid_0's l2: 0.00554638
+Did not meet early stopping. Best iteration is:
+[1975]	valid_0's l2: 0.00554634
+
+Validation set performance:
+Random Forest: R²=0.8685, MAE=0.057
+XGBoost: R²=0.8768, MAE=0.055
+LightGBM: R²=0.8760, MAE=0.055
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. DOMAIN_2019                    0.3144
+   2. IMD_2019                       0.2088
+   3. KS611EW0026                    0.0962
+   4. QS608EW0050                    0.0540
+   5. KS106EW0008                    0.0280
+   6. QS611EW0005                    0.0168
+   7. QS409EW0004                    0.0156
+   8. QS414EW0005                    0.0090
+   9. KS205EW0015                    0.0087
+  10. QS612EW0012                    0.0086
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.331, XGB=0.335, LGBM=0.334
+
+Total training time: 323.08s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (IDACI)
+============================================================
+R² Score: 0.8764
+MAE: 0.055
+RMSE: 0.074
+Validation plot saved to validation_IDACI.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_IDACI_2011_boundaries.csv
+Shapefile saved to IMD_2025_IDACI_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (IDACI)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=0.158, Std=0.117
+2025: Mean=0.341, Std=0.198
+Mean change: 0.182
+Median % change: 129.4%
+Validation and saving took 2.83s
+
+============================================================
+COMPLETED: IDACI
+Final R² Score: 0.8764
+Total time: 329.78s
+============================================================
+
+\nFinished processing IDACI.
+
+============================================================
+Processing Domain: IDAOPI (Income Deprivation Affecting Older People (IDAOPI) Score (rate))
+============================================================
+\n[Step 1/2] Running Feature Selection for IDAOPI...
+Loading data for: Income Deprivation Affecting Older People (IDAOPI) Score (rate)
+Found 33670 LSOAs with exact boundary match
+Including correlated domains: ['Income Score (rate)', 'Index of Multiple Deprivation (IMD) Score', 'Income Deprivation Affecting Children Index (IDACI) Score (rate)']
+Final training data: 31830 LSOAs with 2514 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Total features available: 2512
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for IDAOPI:
+   1. DOMAIN_2019                    Score=1.0000
+   2. IMD_2019                       Score=0.3064
+   3. KS404EW0010                    Score=0.3154
+   4. KS611EW0026                    Score=0.3084
+   5. KS402EW0010                    Score=0.3028
+   6. QS405EW0002                    Score=0.2968
+   7. QS119EW0005                    Score=0.2966
+   8. QS608EW0050                    Score=0.2928
+   9. QS609EW0051                    Score=0.2836
+  10. KS105EW0020                    Score=0.2771
+
+Validating feature selection...
+Training R² with 100 features: 0.9904
+✓ Saved 100 features to selected_features_IDAOPI.txt
+\n[Step 2/2] Running Transfer Modelling for IDAOPI...
+
+============================================================
+PROCESSING: IDAOPI
+============================================================
+Loaded 100 features
+Preparing data for: Income Deprivation Affecting Older People (IDAOPI) Score (rate)
+Including related domains: ['Income Score (rate)', 'Index of Multiple Deprivation (IMD) Score', 'Income Deprivation Affecting Children Index (IDACI) Score (rate)']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.75s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2513
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 52.14s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 49.86s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.9269 (+/- 0.0042)
+XGBoost: R²=0.9374 (+/- 0.0039)
+LightGBM: R²=0.9373 (+/- 0.0036)
+
+Training final models...
+RF OOB Score: 0.9276
+[0]	validation_0-rmse:0.16525
+[100]	validation_0-rmse:0.07607
+[200]	validation_0-rmse:0.05048
+[300]	validation_0-rmse:0.04490
+[400]	validation_0-rmse:0.04365
+[500]	validation_0-rmse:0.04327
+[600]	validation_0-rmse:0.04311
+[700]	validation_0-rmse:0.04303
+[800]	validation_0-rmse:0.04299
+[900]	validation_0-rmse:0.04296
+[1000]	validation_0-rmse:0.04294
+[1100]	validation_0-rmse:0.04290
+[1200]	validation_0-rmse:0.04289
+[1300]	validation_0-rmse:0.04286
+[1400]	validation_0-rmse:0.04286
+[1434]	validation_0-rmse:0.04286
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 0.00588082
+[200]	valid_0's l2: 0.00257381
+[300]	valid_0's l2: 0.00202456
+[400]	valid_0's l2: 0.0019135
+[500]	valid_0's l2: 0.0018785
+[600]	valid_0's l2: 0.0018647
+[700]	valid_0's l2: 0.00185717
+[800]	valid_0's l2: 0.00185217
+[900]	valid_0's l2: 0.00184787
+[1000]	valid_0's l2: 0.00184716
+[1100]	valid_0's l2: 0.00184636
+Early stopping, best iteration is:
+[1093]	valid_0's l2: 0.00184625
+
+Validation set performance:
+Random Forest: R²=0.9235, MAE=0.030
+XGBoost: R²=0.9339, MAE=0.028
+LightGBM: R²=0.9335, MAE=0.028
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. DOMAIN_2019                    0.3940
+   2. QS608EW0050                    0.2266
+   3. QS405EW0002                    0.0638
+   4. QS119EW0005                    0.0455
+   5. QS609EW0051                    0.0306
+   6. KS104EW0009                    0.0242
+   7. QS416EW0007                    0.0175
+   8. QS405EW0006                    0.0131
+   9. KS402EW0010                    0.0124
+  10. KS404EW0010                    0.0102
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.331, XGB=0.335, LGBM=0.334
+
+Total training time: 310.56s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (IDAOPI)
+============================================================
+R² Score: 0.9333
+MAE: 0.028
+RMSE: 0.043
+Validation plot saved to validation_IDAOPI.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_IDAOPI_2011_boundaries.csv
+Shapefile saved to IMD_2025_IDAOPI_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (IDAOPI)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=0.166, Std=0.123
+2025: Mean=0.203, Std=0.159
+Mean change: 0.037
+Median % change: 17.4%
+Validation and saving took 2.86s
+
+============================================================
+COMPLETED: IDAOPI
+Final R² Score: 0.9333
+Total time: 317.22s
+============================================================
+
+\nFinished processing IDAOPI.
+
+============================================================
+Processing Domain: CYP (Children and Young People Sub-domain Score)
+============================================================
+\n[Step 1/2] Running Feature Selection for CYP...
+Loading data for: Children and Young People Sub-domain Score
+Found 33670 LSOAs with exact boundary match
+Including parent domain: Education, Skills and Training Score
+Including correlated domains: ['Education, Skills and Training Score', 'Adult Skills Sub-domain Score', 'Index of Multiple Deprivation (IMD) Score']
+Final training data: 31830 LSOAs with 2514 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Total features available: 2512
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for CYP:
+   1. DOMAIN_2019                    Score=1.0000
+   2. IMD_2019                       Score=0.3273
+   3. Parent_Domain_2019             Score=0.5078
+   4. KS611EW0025                    Score=0.3489
+   5. KS501EW0019                    Score=0.3458
+   6. KS612EW0017                    Score=0.3362
+   7. KS205EW0014                    Score=0.3265
+   8. KS608EW0019                    Score=0.3219
+   9. QS611EW0005                    Score=0.3145
+  10. QS609EW0048                    Score=0.2991
+
+Validating feature selection...
+Training R² with 100 features: 0.9734
+✓ Saved 100 features to selected_features_CYP.txt
+\n[Step 2/2] Running Transfer Modelling for CYP...
+
+============================================================
+PROCESSING: CYP
+============================================================
+Loaded 100 features
+Preparing data for: Children and Young People Sub-domain Score
+Including related domains: ['Education, Skills and Training Score', 'Adult Skills Sub-domain Score', 'Index of Multiple Deprivation (IMD) Score']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.75s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2513
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 51.96s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 49.85s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.8237 (+/- 0.0037)
+XGBoost: R²=0.8381 (+/- 0.0033)
+LightGBM: R²=0.8368 (+/- 0.0037)
+
+Training final models...
+RF OOB Score: 0.8244
+[0]	validation_0-rmse:0.87360
+[100]	validation_0-rmse:0.47637
+[200]	validation_0-rmse:0.38234
+[300]	validation_0-rmse:0.36244
+[400]	validation_0-rmse:0.35690
+[500]	validation_0-rmse:0.35492
+[600]	validation_0-rmse:0.35384
+[700]	validation_0-rmse:0.35328
+[800]	validation_0-rmse:0.35285
+[900]	validation_0-rmse:0.35244
+[1000]	validation_0-rmse:0.35210
+[1100]	validation_0-rmse:0.35183
+[1200]	validation_0-rmse:0.35161
+[1300]	validation_0-rmse:0.35130
+[1400]	validation_0-rmse:0.35105
+[1500]	validation_0-rmse:0.35088
+[1600]	validation_0-rmse:0.35070
+[1700]	validation_0-rmse:0.35057
+[1800]	validation_0-rmse:0.35053
+[1900]	validation_0-rmse:0.35041
+[1999]	validation_0-rmse:0.35026
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 0.230257
+[200]	valid_0's l2: 0.147644
+[300]	valid_0's l2: 0.132052
+[400]	valid_0's l2: 0.127921
+[500]	valid_0's l2: 0.126214
+[600]	valid_0's l2: 0.125528
+[700]	valid_0's l2: 0.124987
+[800]	valid_0's l2: 0.124641
+[900]	valid_0's l2: 0.12438
+[1000]	valid_0's l2: 0.12419
+[1100]	valid_0's l2: 0.124103
+[1200]	valid_0's l2: 0.123969
+[1300]	valid_0's l2: 0.123885
+[1400]	valid_0's l2: 0.123773
+[1500]	valid_0's l2: 0.123743
+[1600]	valid_0's l2: 0.123655
+[1700]	valid_0's l2: 0.123579
+[1800]	valid_0's l2: 0.123491
+[1900]	valid_0's l2: 0.123424
+[2000]	valid_0's l2: 0.123377
+Did not meet early stopping. Best iteration is:
+[1956]	valid_0's l2: 0.123374
+
+Validation set performance:
+Random Forest: R²=0.8311, MAE=0.286
+XGBoost: R²=0.8419, MAE=0.277
+LightGBM: R²=0.8409, MAE=0.278
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. DOMAIN_2019                    0.3656
+   2. Parent_Domain_2019             0.2044
+   3. KS205EW0014                    0.0494
+   4. KS608EW0019                    0.0151
+   5. IMD_2019                       0.0147
+   6. DOMAIN_2019_lag                0.0096
+   7. KS103EW0012                    0.0087
+   8. QS403EW0006                    0.0085
+   9. QS701EW0002                    0.0064
+  10. QS602EW0014                    0.0062
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.331, XGB=0.335, LGBM=0.335
+
+Total training time: 323.82s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (CYP)
+============================================================
+R² Score: 0.8417
+MAE: 0.277
+RMSE: 0.350
+Validation plot saved to validation_CYP.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_CYP_2011_boundaries.csv
+Shapefile saved to IMD_2025_CYP_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (CYP)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=0.000, Std=0.797
+2025: Mean=-0.002, Std=0.807
+Mean change: -0.002
+Median % change: -1.7%
+Validation and saving took 3.01s
+
+============================================================
+COMPLETED: CYP
+Final R² Score: 0.8417
+Total time: 330.61s
+============================================================
+
+\nFinished processing CYP.
+
+============================================================
+Processing Domain: AdultSkills (Adult Skills Sub-domain Score)
+============================================================
+\n[Step 1/2] Running Feature Selection for AdultSkills...
+Loading data for: Adult Skills Sub-domain Score
+Found 33670 LSOAs with exact boundary match
+Including parent domain: Education, Skills and Training Score
+Including correlated domains: ['Education, Skills and Training Score', 'Income Score (rate)', 'Index of Multiple Deprivation (IMD) Score']
+Final training data: 31830 LSOAs with 2514 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Total features available: 2512
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for AdultSkills:
+   1. DOMAIN_2019                    Score=1.0000
+   2. IMD_2019                       Score=0.3144
+   3. Parent_Domain_2019             Score=0.4031
+   4. KS611EW0020                    Score=0.4455
+   5. QS502EW0012                    Score=0.3575
+   6. KS608EW0019                    Score=0.3451
+   7. KS613EW0017                    Score=0.3378
+   8. KS608EW0012                    Score=0.3147
+   9. KS611EW0025                    Score=0.3147
+  10. QS611EW0005                    Score=0.3118
+
+Validating feature selection...
+Training R² with 100 features: 0.9897
+✓ Saved 100 features to selected_features_AdultSkills.txt
+\n[Step 2/2] Running Transfer Modelling for AdultSkills...
+
+============================================================
+PROCESSING: AdultSkills
+============================================================
+Loaded 100 features
+Preparing data for: Adult Skills Sub-domain Score
+Including related domains: ['Education, Skills and Training Score', 'Income Score (rate)', 'Index of Multiple Deprivation (IMD) Score']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.74s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2513
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 52.13s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 49.85s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.9290 (+/- 0.0028)
+XGBoost: R²=0.9379 (+/- 0.0022)
+LightGBM: R²=0.9375 (+/- 0.0024)
+
+Training final models...
+RF OOB Score: 0.9297
+[0]	validation_0-rmse:0.09957
+[100]	validation_0-rmse:0.04581
+[200]	validation_0-rmse:0.03029
+[300]	validation_0-rmse:0.02678
+[400]	validation_0-rmse:0.02589
+[500]	validation_0-rmse:0.02554
+[600]	validation_0-rmse:0.02534
+[700]	validation_0-rmse:0.02521
+[800]	validation_0-rmse:0.02512
+[900]	validation_0-rmse:0.02504
+[1000]	validation_0-rmse:0.02497
+[1100]	validation_0-rmse:0.02491
+[1200]	validation_0-rmse:0.02486
+[1300]	validation_0-rmse:0.02481
+[1400]	validation_0-rmse:0.02478
+[1500]	validation_0-rmse:0.02475
+[1600]	validation_0-rmse:0.02472
+[1700]	validation_0-rmse:0.02470
+[1800]	validation_0-rmse:0.02468
+[1900]	validation_0-rmse:0.02465
+[1999]	validation_0-rmse:0.02464
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 0.00213957
+[200]	valid_0's l2: 0.000935769
+[300]	valid_0's l2: 0.000728126
+[400]	valid_0's l2: 0.000679831
+[500]	valid_0's l2: 0.000660219
+[600]	valid_0's l2: 0.000648757
+[700]	valid_0's l2: 0.000640941
+[800]	valid_0's l2: 0.000635636
+[900]	valid_0's l2: 0.000631789
+[1000]	valid_0's l2: 0.000629282
+[1100]	valid_0's l2: 0.000626972
+[1200]	valid_0's l2: 0.000625146
+[1300]	valid_0's l2: 0.000623606
+[1400]	valid_0's l2: 0.000622306
+[1500]	valid_0's l2: 0.000621051
+[1600]	valid_0's l2: 0.000620098
+[1700]	valid_0's l2: 0.000619151
+[1800]	valid_0's l2: 0.000618343
+[1900]	valid_0's l2: 0.000617732
+[2000]	valid_0's l2: 0.000616935
+Did not meet early stopping. Best iteration is:
+[1999]	valid_0's l2: 0.000616929
+
+Validation set performance:
+Random Forest: R²=0.9292, MAE=0.020
+XGBoost: R²=0.9398, MAE=0.019
+LightGBM: R²=0.9389, MAE=0.019
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. DOMAIN_2019                    0.4807
+   2. KS611EW0020                    0.2315
+   3. Parent_Domain_2019             0.0457
+   4. KS611EW0026                    0.0266
+   5. KS608EW0019                    0.0230
+   6. QS414EW0005                    0.0151
+   7. KS601EW0025                    0.0129
+   8. KS611EW0025                    0.0081
+   9. KS205EW0015                    0.0080
+  10. KS611EW0020_lag                0.0076
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.331, XGB=0.335, LGBM=0.334
+
+Total training time: 330.40s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (AdultSkills)
+============================================================
+R² Score: 0.9384
+MAE: 0.019
+RMSE: 0.025
+Validation plot saved to validation_AdultSkills.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_AdultSkills_2011_boundaries.csv
+Shapefile saved to IMD_2025_AdultSkills_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (AdultSkills)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=0.307, Std=0.114
+2025: Mean=0.241, Std=0.096
+Mean change: -0.065
+Median % change: -23.8%
+Validation and saving took 2.90s
+
+============================================================
+COMPLETED: AdultSkills
+Final R² Score: 0.9384
+Total time: 337.10s
+============================================================
+
+\nFinished processing AdultSkills.
+
+============================================================
+Processing Domain: GeoBarriers (Geographical Barriers Sub-domain Score)
+============================================================
+\n[Step 1/2] Running Feature Selection for GeoBarriers...
+Loading data for: Geographical Barriers Sub-domain Score
+Found 33670 LSOAs with exact boundary match
+Including parent domain: Barriers to Housing and Services Score
+Including correlated domains: ['Income Deprivation Affecting Older People (IDAOPI) Score (rate)', 'Wider Barriers Sub-domain Score', 'Crime Score']
+Final training data: 31830 LSOAs with 2515 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2517
+Total features available: 2513
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for GeoBarriers:
+   1. DOMAIN_2019                    Score=0.3667
+   2. IMD_2019                       Score=0.0995
+   3. Parent_Domain_2019             Score=0.0719
+   4. KS101EW0008                    Score=0.9993
+   5. QS415EW0005                    Score=0.5214
+   6. QS202EW0006                    Score=0.4283
+   7. KS605EW0020                    Score=0.4031
+   8. KS104EW0011                    Score=0.3986
+   9. KS401EW0020                    Score=0.3881
+  10. QS607EW0030                    Score=0.3709
+
+Validating feature selection...
+Training R² with 100 features: 0.9873
+✓ Saved 100 features to selected_features_GeoBarriers.txt
+\n[Step 2/2] Running Transfer Modelling for GeoBarriers...
+
+============================================================
+PROCESSING: GeoBarriers
+============================================================
+Loaded 100 features
+Preparing data for: Geographical Barriers Sub-domain Score
+Including related domains: ['Income Deprivation Affecting Older People (IDAOPI) Score (rate)', 'Wider Barriers Sub-domain Score', 'Crime Score']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.76s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2517
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2514
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 52.03s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 50.50s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.9311 (+/- 0.0024)
+XGBoost: R²=0.9444 (+/- 0.0022)
+LightGBM: R²=0.9436 (+/- 0.0022)
+
+Training final models...
+RF OOB Score: 0.9317
+[0]	validation_0-rmse:16.61068
+[100]	validation_0-rmse:7.61827
+[200]	validation_0-rmse:4.95580
+[300]	validation_0-rmse:4.29987
+[400]	validation_0-rmse:4.10821
+[500]	validation_0-rmse:4.02707
+[600]	validation_0-rmse:3.98252
+[700]	validation_0-rmse:3.95291
+[800]	validation_0-rmse:3.93203
+[900]	validation_0-rmse:3.91593
+[1000]	validation_0-rmse:3.90057
+[1100]	validation_0-rmse:3.88717
+[1200]	validation_0-rmse:3.87503
+[1300]	validation_0-rmse:3.86315
+[1400]	validation_0-rmse:3.85424
+[1500]	validation_0-rmse:3.84533
+[1600]	validation_0-rmse:3.83780
+[1700]	validation_0-rmse:3.83096
+[1800]	validation_0-rmse:3.82466
+[1900]	validation_0-rmse:3.81928
+[1999]	validation_0-rmse:3.81457
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 59.0182
+[200]	valid_0's l2: 24.8992
+[300]	valid_0's l2: 18.6629
+[400]	valid_0's l2: 17.026
+[500]	valid_0's l2: 16.3478
+[600]	valid_0's l2: 15.9536
+[700]	valid_0's l2: 15.686
+[800]	valid_0's l2: 15.4976
+[900]	valid_0's l2: 15.3625
+[1000]	valid_0's l2: 15.2512
+[1100]	valid_0's l2: 15.1522
+[1200]	valid_0's l2: 15.0631
+[1300]	valid_0's l2: 14.9931
+[1400]	valid_0's l2: 14.9387
+[1500]	valid_0's l2: 14.8951
+[1600]	valid_0's l2: 14.8579
+[1700]	valid_0's l2: 14.8162
+[1800]	valid_0's l2: 14.7796
+[1900]	valid_0's l2: 14.7413
+[2000]	valid_0's l2: 14.7134
+Did not meet early stopping. Best iteration is:
+[2000]	valid_0's l2: 14.7134
+
+Validation set performance:
+Random Forest: R²=0.9348, MAE=3.259
+XGBoost: R²=0.9482, MAE=2.910
+LightGBM: R²=0.9476, MAE=2.933
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. KS101EW0008_lag                0.3667
+   2. KS101EW0008                    0.1285
+   3. QS415EW0005                    0.1235
+   4. QS202EW0006                    0.0504
+   5. QS607EW0030                    0.0345
+   6. QS802EW0010                    0.0331
+   7. DOMAIN_2019_lag                0.0185
+   8. QS415EW0005_lag                0.0182
+   9. QS701EW0008                    0.0179
+  10. KS202EW0074                    0.0111
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.330, XGB=0.335, LGBM=0.335
+
+Total training time: 324.68s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (GeoBarriers)
+============================================================
+R² Score: 0.9464
+MAE: 2.958
+RMSE: 3.879
+Validation plot saved to validation_GeoBarriers.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_GeoBarriers_2011_boundaries.csv
+Shapefile saved to IMD_2025_GeoBarriers_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (GeoBarriers)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=0.000, Std=0.794
+2025: Mean=35.476, Std=15.984
+Mean change: 35.476
+Median % change: -887.4%
+Validation and saving took 2.80s
+
+============================================================
+COMPLETED: GeoBarriers
+Final R² Score: 0.9464
+Total time: 331.29s
+============================================================
+
+\nFinished processing GeoBarriers.
+
+============================================================
+Processing Domain: WiderBarriers (Wider Barriers Sub-domain Score)
+============================================================
+\n[Step 1/2] Running Feature Selection for WiderBarriers...
+Loading data for: Wider Barriers Sub-domain Score
+Found 33670 LSOAs with exact boundary match
+Including parent domain: Barriers to Housing and Services Score
+Including correlated domains: ['Income Deprivation Affecting Older People (IDAOPI) Score (rate)', 'Outdoors Sub-domain Score', 'Crime Score']
+Final training data: 31830 LSOAs with 2516 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2518
+Total features available: 2514
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for WiderBarriers:
+   1. DOMAIN_2019                    Score=1.0000
+   2. IMD_2019                       Score=0.1854
+   3. Parent_Domain_2019             Score=0.1427
+   4. KS403EW0012                    Score=0.5694
+   5. KS403EW0011                    Score=0.4916
+   6. QS414EW0005                    Score=0.4637
+   7. QS409EW0004                    Score=0.4333
+   8. KS206EW0009                    Score=0.4098
+   9. KS202EW0043                    Score=0.4004
+  10. KS201EW0033                    Score=0.3989
+
+Validating feature selection...
+Training R² with 100 features: 0.9526
+✓ Saved 100 features to selected_features_WiderBarriers.txt
+\n[Step 2/2] Running Transfer Modelling for WiderBarriers...
+
+============================================================
+PROCESSING: WiderBarriers
+============================================================
+Loaded 100 features
+Preparing data for: Wider Barriers Sub-domain Score
+Including related domains: ['Income Deprivation Affecting Older People (IDAOPI) Score (rate)', 'Outdoors Sub-domain Score', 'Crime Score']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.73s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2518
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2515
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 52.08s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 50.15s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.7291 (+/- 0.0047)
+XGBoost: R²=0.7481 (+/- 0.0047)
+LightGBM: R²=0.7459 (+/- 0.0050)
+
+Training final models...
+RF OOB Score: 0.7309
+[0]	validation_0-rmse:3.04222
+[100]	validation_0-rmse:1.89074
+[200]	validation_0-rmse:1.64320
+[300]	validation_0-rmse:1.58910
+[400]	validation_0-rmse:1.56920
+[500]	validation_0-rmse:1.55860
+[600]	validation_0-rmse:1.55249
+[700]	validation_0-rmse:1.54686
+[800]	validation_0-rmse:1.54132
+[900]	validation_0-rmse:1.53679
+[1000]	validation_0-rmse:1.53310
+[1100]	validation_0-rmse:1.52904
+[1200]	validation_0-rmse:1.52575
+[1300]	validation_0-rmse:1.52330
+[1400]	validation_0-rmse:1.52054
+[1500]	validation_0-rmse:1.51801
+[1600]	validation_0-rmse:1.51561
+[1700]	validation_0-rmse:1.51333
+[1800]	validation_0-rmse:1.51072
+[1900]	validation_0-rmse:1.50872
+[1999]	validation_0-rmse:1.50687
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 3.62008
+[200]	valid_0's l2: 2.73354
+[300]	valid_0's l2: 2.55048
+[400]	valid_0's l2: 2.4799
+[500]	valid_0's l2: 2.44083
+[600]	valid_0's l2: 2.41922
+[700]	valid_0's l2: 2.40125
+[800]	valid_0's l2: 2.38622
+[900]	valid_0's l2: 2.37206
+[1000]	valid_0's l2: 2.3603
+[1100]	valid_0's l2: 2.34949
+[1200]	valid_0's l2: 2.34051
+[1300]	valid_0's l2: 2.32987
+[1400]	valid_0's l2: 2.32309
+[1500]	valid_0's l2: 2.31582
+[1600]	valid_0's l2: 2.30907
+[1700]	valid_0's l2: 2.30296
+[1800]	valid_0's l2: 2.29745
+[1900]	valid_0's l2: 2.29198
+[2000]	valid_0's l2: 2.28712
+Did not meet early stopping. Best iteration is:
+[2000]	valid_0's l2: 2.28712
+
+Validation set performance:
+Random Forest: R²=0.7362, MAE=1.228
+XGBoost: R²=0.7580, MAE=1.181
+LightGBM: R²=0.7562, MAE=1.183
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. DOMAIN_2019                    0.2576
+   2. KS403EW0012                    0.1070
+   3. KS403EW0012_lag                0.0705
+   4. QS414EW0005                    0.0282
+   5. DOMAIN_2019_lag                0.0238
+   6. QS408EW0002                    0.0150
+   7. KS201EW0033                    0.0146
+   8. QS205EW0005                    0.0141
+   9. QS409EW0004                    0.0120
+  10. KS209EW0011                    0.0086
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.327, XGB=0.337, LGBM=0.336
+
+Total training time: 324.47s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (WiderBarriers)
+============================================================
+R² Score: 0.7536
+MAE: 1.190
+RMSE: 1.520
+Validation plot saved to validation_WiderBarriers.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_WiderBarriers_2011_boundaries.csv
+Shapefile saved to IMD_2025_WiderBarriers_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (WiderBarriers)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=-0.000, Std=2.489
+2025: Mean=-0.048, Std=2.612
+Mean change: -0.048
+Median % change: -1.6%
+Validation and saving took 3.03s
+
+============================================================
+COMPLETED: WiderBarriers
+Final R² Score: 0.7536
+Total time: 331.28s
+============================================================
+
+\nFinished processing WiderBarriers.
+
+============================================================
+Processing Domain: Indoors (Indoors Sub-domain Score)
+============================================================
+\n[Step 1/2] Running Feature Selection for Indoors...
+Loading data for: Indoors Sub-domain Score
+Found 33670 LSOAs with exact boundary match
+Including parent domain: Living Environment Score
+Including correlated domains: ['Living Environment Score', 'Index of Multiple Deprivation (IMD) Score', 'Crime Score']
+Final training data: 31830 LSOAs with 2514 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Total features available: 2512
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for Indoors:
+   1. DOMAIN_2019                    Score=1.0000
+   2. IMD_2019                       Score=0.0871
+   3. Parent_Domain_2019             Score=0.6447
+   4. KS403EW0009                    Score=0.2777
+   5. KS402EW0015                    Score=0.2380
+   6. KS401EW0024                    Score=0.2266
+   7. QS404EW0006                    Score=0.2117
+   8. KS401EW0019                    Score=0.2047
+   9. QS415EW0008                    Score=0.1647
+  10. KS401EW0018                    Score=0.1638
+
+Validating feature selection...
+Training R² with 100 features: 0.9685
+✓ Saved 100 features to selected_features_Indoors.txt
+\n[Step 2/2] Running Transfer Modelling for Indoors...
+
+============================================================
+PROCESSING: Indoors
+============================================================
+Loaded 100 features
+Preparing data for: Indoors Sub-domain Score
+Including related domains: ['Living Environment Score', 'Index of Multiple Deprivation (IMD) Score', 'Crime Score']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.75s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2516
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2513
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 52.17s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 49.86s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.7814 (+/- 0.0043)
+XGBoost: R²=0.8323 (+/- 0.0058)
+LightGBM: R²=0.8313 (+/- 0.0062)
+
+Training final models...
+RF OOB Score: 0.7842
+[0]	validation_0-rmse:0.61113
+[100]	validation_0-rmse:0.37136
+[200]	validation_0-rmse:0.30641
+[300]	validation_0-rmse:0.28589
+[400]	validation_0-rmse:0.27602
+[500]	validation_0-rmse:0.27005
+[600]	validation_0-rmse:0.26587
+[700]	validation_0-rmse:0.26294
+[800]	validation_0-rmse:0.26066
+[900]	validation_0-rmse:0.25898
+[1000]	validation_0-rmse:0.25761
+[1100]	validation_0-rmse:0.25658
+[1200]	validation_0-rmse:0.25557
+[1300]	validation_0-rmse:0.25471
+[1400]	validation_0-rmse:0.25396
+[1500]	validation_0-rmse:0.25330
+[1600]	validation_0-rmse:0.25268
+[1700]	validation_0-rmse:0.25212
+[1800]	validation_0-rmse:0.25162
+[1900]	validation_0-rmse:0.25122
+[1999]	validation_0-rmse:0.25084
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 0.140075
+[200]	valid_0's l2: 0.0953358
+[300]	valid_0's l2: 0.0823777
+[400]	valid_0's l2: 0.0765127
+[500]	valid_0's l2: 0.0730143
+[600]	valid_0's l2: 0.0706262
+[700]	valid_0's l2: 0.0689404
+[800]	valid_0's l2: 0.0676707
+[900]	valid_0's l2: 0.066665
+[1000]	valid_0's l2: 0.0659215
+[1100]	valid_0's l2: 0.0654028
+[1200]	valid_0's l2: 0.0649794
+[1300]	valid_0's l2: 0.0646578
+[1400]	valid_0's l2: 0.0644238
+[1500]	valid_0's l2: 0.0641659
+[1600]	valid_0's l2: 0.0639506
+[1700]	valid_0's l2: 0.0637841
+[1800]	valid_0's l2: 0.0636301
+[1900]	valid_0's l2: 0.0634817
+[2000]	valid_0's l2: 0.0633348
+Did not meet early stopping. Best iteration is:
+[1999]	valid_0's l2: 0.0633338
+
+Validation set performance:
+Random Forest: R²=0.7846, MAE=0.226
+XGBoost: R²=0.8337, MAE=0.195
+LightGBM: R²=0.8327, MAE=0.197
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. DOMAIN_2019                    0.2306
+   2. Parent_Domain_2019             0.1461
+   3. KS401EW0018                    0.0351
+   4. KS401EW0024                    0.0291
+   5. KS404EW0008                    0.0265
+   6. QS415EW0005                    0.0263
+   7. Parent_Domain_2_lag            0.0203
+   8. KS402EW0015                    0.0187
+   9. QS404EW0006                    0.0182
+  10. KS401EW0020                    0.0154
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.320, XGB=0.340, LGBM=0.340
+
+Total training time: 379.13s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (Indoors)
+============================================================
+R² Score: 0.8266
+MAE: 0.201
+RMSE: 0.256
+Validation plot saved to validation_Indoors.png
+
+✓ Model performance acceptable. Saving results...
+Results saved to IMD_2025_Indoors_2011_boundaries.csv
+Shapefile saved to IMD_2025_Indoors_2011_boundaries.shp
+
+============================================================
+SUMMARY STATISTICS (Indoors)
+============================================================
+Total LSOAs: 32,844
+Unchanged boundaries: 31,873
+Changed boundaries: 971
+
+2019: Mean=-0.000, Std=0.836
+2025: Mean=0.019, Std=0.551
+Mean change: 0.019
+Median % change: -40.1%
+Validation and saving took 2.92s
+
+============================================================
+COMPLETED: Indoors
+Final R² Score: 0.8266
+Total time: 385.84s
+============================================================
+
+\nFinished processing Indoors.
+
+============================================================
+Processing Domain: Outdoors (Outdoors Sub-domain Score)
+============================================================
+\n[Step 1/2] Running Feature Selection for Outdoors...
+Loading data for: Outdoors Sub-domain Score
+Found 33670 LSOAs with exact boundary match
+Including parent domain: Living Environment Score
+Including correlated domains: ['Wider Barriers Sub-domain Score', 'Living Environment Score', 'Crime Score']
+Final training data: 31830 LSOAs with 2515 features
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2517
+Total features available: 2513
+Calculating Random Forest importance...
+Calculating F-scores...
+Calculating Mutual Information...
+
+Top 10 features for Outdoors:
+   1. DOMAIN_2019                    Score=1.0000
+   2. IMD_2019                       Score=0.0831
+   3. Parent_Domain_2019             Score=0.2093
+   4. KS206EW0009                    Score=0.3764
+   5. KS202EW0074                    Score=0.3700
+   6. QS802EW0011                    Score=0.3655
+   7. QS408EW0006                    Score=0.3591
+   8. KS603EW0016                    Score=0.3535
+   9. KS104EW0011                    Score=0.3521
+  10. QS202EW0006                    Score=0.3507
+
+Validating feature selection...
+Training R² with 100 features: 0.9453
+✓ Saved 100 features to selected_features_Outdoors.txt
+\n[Step 2/2] Running Transfer Modelling for Outdoors...
+
+============================================================
+PROCESSING: Outdoors
+============================================================
+Loaded 100 features
+Preparing data for: Outdoors Sub-domain Score
+Including related domains: ['Wider Barriers Sub-domain Score', 'Living Environment Score', 'Crime Score']
+Found 33670 LSOAs with 100% overlap for training
+Found 1035 LSOAs with boundary changes
+Total LSOAs to predict: 32844
+Data prepared in 3.74s
+
+Training optimized ensemble...
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2517
+Running organic feature engineering...
+Applying log-transform to 2409 census features...
+Standardizing all census features (Mean=0, Std=1)...
+Creating organic aggregate features (Census_Agg_Mean, Census_Agg_Std)...
+Organic engineering complete. New feature count: 2514
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 52.06s
+Adding spatial features...
+Added 5 spatial features
+Spatial features took 49.77s
+Using 105 total features (including 5 spatial)
+Training on 25,464 LSOAs, validating on 6,366 LSOAs
+
+1. Training Random Forest...
+
+2. Training XGBoost...
+
+3. Training LightGBM...
+
+Cross-validation scores:
+Random Forest: R²=0.6648 (+/- 0.0087)
+XGBoost: R²=0.7004 (+/- 0.0102)
+LightGBM: R²=0.6975 (+/- 0.0116)
+
+Training final models...
+RF OOB Score: 0.6672
+[0]	validation_0-rmse:0.73966
+[100]	validation_0-rmse:0.49628
+[200]	validation_0-rmse:0.44067
+[300]	validation_0-rmse:0.42581
+[400]	validation_0-rmse:0.41960
+[500]	validation_0-rmse:0.41635
+[600]	validation_0-rmse:0.41419
+[700]	validation_0-rmse:0.41252
+[800]	validation_0-rmse:0.41126
+[900]	validation_0-rmse:0.41010
+[1000]	validation_0-rmse:0.40909
+[1100]	validation_0-rmse:0.40836
+[1200]	validation_0-rmse:0.40771
+[1300]	validation_0-rmse:0.40710
+[1400]	validation_0-rmse:0.40661
+[1500]	validation_0-rmse:0.40618
+[1600]	validation_0-rmse:0.40578
+[1700]	validation_0-rmse:0.40551
+[1800]	validation_0-rmse:0.40525
+[1900]	validation_0-rmse:0.40501
+[1999]	validation_0-rmse:0.40474
+Training until validation scores don't improve for 100 rounds
+[100]	valid_0's l2: 0.247981
+[200]	valid_0's l2: 0.195311
+[300]	valid_0's l2: 0.182316
+[400]	valid_0's l2: 0.176841
+[500]	valid_0's l2: 0.173568
+[600]	valid_0's l2: 0.171567
+[700]	valid_0's l2: 0.170086
+[800]	valid_0's l2: 0.169278
+[900]	valid_0's l2: 0.168567
+[1000]	valid_0's l2: 0.167975
+[1100]	valid_0's l2: 0.167498
+[1200]	valid_0's l2: 0.167001
+[1300]	valid_0's l2: 0.166562
+[1400]	valid_0's l2: 0.166284
+[1500]	valid_0's l2: 0.165999
+[1600]	valid_0's l2: 0.165836
+[1700]	valid_0's l2: 0.165674
+[1800]	valid_0's l2: 0.165514
+[1900]	valid_0's l2: 0.165285
+[2000]	valid_0's l2: 0.165148
+Did not meet early stopping. Best iteration is:
+[2000]	valid_0's l2: 0.165148
+
+Validation set performance:
+Random Forest: R²=0.6722, MAE=0.339
+XGBoost: R²=0.7043, MAE=0.320
+LightGBM: R²=0.7019, MAE=0.322
+
+Best model: XGBoost
+
+Top 10 most important features:
+   1. DOMAIN_2019                    0.2019
+   2. DOMAIN_2019_lag                0.0606
+   3. QS401EW0007                    0.0358
+   4. KS402EW0015                    0.0292
+   5. KS202EW0045                    0.0287
+   6. QS701EW0003                    0.0244
+   7. QS416EW0002                    0.0209
+   8. QS407EW0003                    0.0183
+   9. KS209EW0006                    0.0173
+  10. QS802EW0011                    0.0170
+
+Retraining on full training set (31,830 LSOAs)...
+
+Generating predictions...
+
+Ensemble weights: RF=0.323, XGB=0.339, LGBM=0.338
+
+Total training time: 323.69s
+
+Validating and saving results...
+
+============================================================
+FINAL VALIDATION RESULTS (Outdoors)
+============================================================
+R² Score: 0.6999
+MAE: 0.323
+RMSE: 0.408
+Validation plot saved to validation_Outdoors.png
+
+⚠ Warning: Low R² (0.700). Results may be unreliable.
+Results saved to IMD_2025_Outdoors_LOW_R2.csv
+Validation and saving took 0.21s
+
+============================================================
+COMPLETED: Outdoors
+Final R² Score: 0.6999
+Total time: 327.69s
+============================================================
+
+\nFinished processing Outdoors.
